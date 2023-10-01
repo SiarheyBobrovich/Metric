@@ -8,3 +8,11 @@ services:
       - POSTGRES_DB=product
     ports:
       - "5432:5432"
+  prometheus:
+    image: prom/prometheus
+    restart: always
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+#      - ./prometheus_data:/prometheus
+    ports:
+        - "9090:9090"
