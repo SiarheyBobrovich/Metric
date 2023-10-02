@@ -17,10 +17,14 @@ services:
         - "9090:9090"
 
   grafana:
-    build: grafana_config
-    image: grafana
+    image: grafana/grafana
     user: root
     volumes:
+      #datasorces & dashboard
+      - ./grafana_config/main.yml:/etc/grafana/provisioning/dashboards/main.yml
+      - ./grafana_config/main-dashboard.json:/var/lib/grafana/dashboards/main-dashboard.json
+      - ./grafana_config/datasouce.yml:/etc/grafana/provisioning/datasources/datasouce.yml
+
       - ./grafana:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
     restart: always
