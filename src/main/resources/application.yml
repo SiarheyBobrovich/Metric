@@ -2,15 +2,15 @@ management:
   metrics:
     enable:
       all: false
+      products: true
       http:
         server:
-          requests: true
-      product: true
+          requests: false
       db: true
   endpoints:
     web:
       exposure:
-        include: prometheus,health
+        include: prometheus,health,metrics
 
 spring:
   datasource:

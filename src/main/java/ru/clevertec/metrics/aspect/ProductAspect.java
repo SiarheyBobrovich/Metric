@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Aspect
-@Component
+//@Component
 @RequiredArgsConstructor
 public class ProductAspect {
     private final Map<UUID, Counter> uuidCounterMap = new HashMap<>();

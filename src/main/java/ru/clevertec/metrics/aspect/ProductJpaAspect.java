@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Aspect
-@Component
+//@Component
 @RequiredArgsConstructor
 public class ProductJpaAspect {
 

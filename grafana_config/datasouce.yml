@@ -7,11 +7,12 @@ deleteDatasources:
 datasources:
   - name: Prometheus
     type: prometheus
+    uid: PBFA97CFB590B2093
     access: proxy
     orgId: 1
     url: http://prometheus:9090
     basicAuth: false
-    isDefault: true
+    isDefault: false
     jsonData:
       graphiteVersion: "1.1"
       tlsAuth: false

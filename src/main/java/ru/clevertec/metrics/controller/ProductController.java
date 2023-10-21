@@ -1,5 +1,6 @@
 package ru.clevertec.metrics.controller;
 
+import io.micrometer.observation.annotation.Observed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,10 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/{uuid}")
+    //Включает наблюдение за методом
+    @Observed(name = "products.get.uuid",
+            lowCardinalityKeyValues = {"product.key", "uuid"},
+            contextualName = "contextualName")
     public ResponseEntity<ProductDto> getProductById(@PathVariable UUID uuid) {
         ProductDto productDto = productService.getById(uuid);
 
