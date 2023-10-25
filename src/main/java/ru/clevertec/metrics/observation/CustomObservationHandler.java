@@ -2,12 +2,16 @@ package ru.clevertec.metrics.observation;
 
 import io.micrometer.observation.Observation;
 import io.micrometer.observation.ObservationHandler;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class CustomObservationHandler implements ObservationHandler<Observation.Context> {
 
     @Override
@@ -31,28 +35,28 @@ public class CustomObservationHandler implements ObservationHandler<Observation.
     // Вызывается если эксепшн то 4
     public void onError(Observation.Context context) {
         // Наблюдение за @Observed методами при эксцепшенах
-        log.info("Error: {}", context.getError().getMessage());
+        log.info("Error: {}", Objects.requireNonNull(context.getError()).getMessage());
     }
 
     @Override
-    public void onEvent(Observation.Event event, Observation.Context context) {
+    public void onEvent(@NonNull Observation.Event event, @NonNull Observation.Context context) {
         ObservationHandler.super.onEvent(event, context);
     }
 
     @Override
     // Вызывается вторым
-    public void onScopeOpened(Observation.Context context) {
+    public void onScopeOpened(@NonNull Observation.Context context) {
         ObservationHandler.super.onScopeOpened(context);
     }
 
     @Override
     // Вызывается третьим
-    public void onScopeClosed(Observation.Context context) {
+    public void onScopeClosed(@NonNull Observation.Context context) {
         ObservationHandler.super.onScopeClosed(context);
     }
 
     @Override
-    public void onScopeReset(Observation.Context context) {
+    public void onScopeReset(@NonNull Observation.Context context) {
         ObservationHandler.super.onScopeReset(context);
     }
 

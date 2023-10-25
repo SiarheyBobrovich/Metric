@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<included>
+    <!--    <include resource="org/springframework/boot/logging/logback/base.xml"/>-->
+    <appender name="logging_to_console"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
+        </layout>
+    </appender>
+
+    <!-- LOG everything at INFO level -->
+    <root level="info">
+        <appender-ref ref="logging_to_console"/>
+    </root>
+
+    <logger name="ru.alfaleasing" level="trace" additivity="false">
+        <appender-ref ref="logging_to_console"/>
+    </logger>
+</included>

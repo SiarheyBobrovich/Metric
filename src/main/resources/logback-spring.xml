@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="logging/defaults.xml"/>
+    <springProfile name="local">
+        <include resource="logging/http/logging_to_file-appender.xml"/>
+    </springProfile>
+    <springProfile name="local">
+        <include resource="logging/logging_to_console-appender.xml"/>
+    </springProfile>
+    <springProfile name="!local">
+        <include resource="loggingp/logging_format_json_to_file-appender.xml"/>
+    </springProfile>
+    <springProfile name="!local">
+        <include resource="logging/logging_format_json_to_console-appender.xml"/>
+    </springProfile>
+</configuration>

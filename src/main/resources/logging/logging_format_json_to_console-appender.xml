@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<included>
+    <appender name="logging_format_json_to_console"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <version>${VERSION}</version>
+            <writeVersionAsInteger>true</writeVersionAsInteger>
+        </encoder>
+    </appender>
+
+    <!-- LOG everything at INFO level -->
+    <root level="info">
+        <appender-ref ref="logging_format_json_to_console"/>
+    </root>
+
+    <logger name="ru.alfaleasing" level="trace" additivity="false">
+        <appender-ref ref="logging_format_json_to_console"/>
+    </logger>
+</included>

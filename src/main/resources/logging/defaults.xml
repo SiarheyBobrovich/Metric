@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<included>
+    <property name="LOGS" value="./logs"/>
+    <property name="VERSION" value="2"/>
+        <property name="CONSOLE_LOG_PATTERN"
+                  value="%black(%d{ISO8601}) %highlight(%-5level) [%blue(%t), traceId=%X{traceId:-}, spanId=%X{spanId:-}] %yellow(%C{1}:%L) : %msg%n%throwable"/>
+    <property name="FILE_LOG_PATTERN"
+              value="%d %p  %C{1} [%t] %m%n"/>
+</included>

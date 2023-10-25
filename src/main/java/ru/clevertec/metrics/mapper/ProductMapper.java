@@ -13,4 +13,5 @@ public interface ProductMapper {
 
     @Mapping(target = "uuid", ignore = true)
     Product toProduct(ProductDto productDto);
+
 }

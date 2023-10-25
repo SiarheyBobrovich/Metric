@@ -5,14 +5,47 @@ management:
       products: true
       http:
         server:
-          requests: false
+          requests: true
       db: true
   endpoints:
     web:
       exposure:
         include: prometheus,health,metrics
+  endpoint:
+    health:
+      group:
+        readiness:
+          include: db
+  tracing:
+    sampling:
+      probability: 1
 
 spring:
+  cloud:
+    openfeign:
+      micrometer:
+        enabled: true
+    stream:
+      output-bindings: logProducer
+      rabbit:
+        bindings:
+          logProducer-out-0:
+            producer:
+              exchangeType: direct
+              queueNameGroupOnly: true
+              routing-key-expression: "'app.to.log'"
+      bindings:
+        logProducer-out-0:
+          destination: log_exchange
+          group: queue.log
+          binder: rabbit
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: producer
+    password: producer
+    virtual-host: producer
+
   datasource:
     url: jdbc:postgresql://localhost:5432/product
     username: postgres
@@ -21,3 +54,9 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+app:
+  log:
+    url: http://localhost:9999/v1/log
